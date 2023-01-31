@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Fruit } from "./api/fruit"
+import { FruitContainer } from "@/components/FruitContainer"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,9 +13,9 @@ export default function Home() {
   React.useEffect(() => {
     async function fetchFruits() {
       const resp = await fetch("/api/fruit")
-      const result = await resp.json()
+      const { data } = await resp.json()
       if (!ignore) {
-        setFruits(result);
+        setFruits(data);
       }
     }
 
@@ -23,7 +24,7 @@ export default function Home() {
     return () => {
       ignore = true;
     }
-  }, [fruits]);
+  }, []);
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={inter.className}>
-          <h1>Hello world</h1>
+          {fruits.length > 0 && fruits.map(fruit => <FruitContainer fruit={fruit} />)}
         </div>
       </main>
     </>
