@@ -1,4 +1,3 @@
-import { Fruit } from '@/pages/api/fruit';
 import React, { useEffect, useState } from 'react';
 
 type FilterProps = {
@@ -6,24 +5,11 @@ type FilterProps = {
     setQuery: (query: string) => void
 };
 
-type Season = "either" | "in_season" | "not_in_season"
-
 export const FilterFruits = ({ query, setQuery }: FilterProps) => {
     const [name, setName] = useState('');
     const [isCheckedNotInSeason, setIsCheckedNotInSeason] = useState<boolean>(false);
     const [isCheckedInSeason, setIsCheckedInSeason] = useState<boolean>(false);
-    const [season, setSeason] = useState<Season>("either");
     const [color, setColor] = useState('');
-
-    // NOTES
-    /*
-    what are the states?
-    initial - nothing checked
-    in_season - checked or not
-    not_in_season - checked or not 
-    both - essentially the same as initial 
-
-    */
 
     useEffect(() => {
         let query = new URLSearchParams()
