@@ -70,7 +70,7 @@ export interface FruitQuery extends ParsedUrlQuery {
   in_season?: string;
 }
 
-type Fruit = {
+export type Fruit = {
   name: string
   colors: string[]
   in_season: boolean
